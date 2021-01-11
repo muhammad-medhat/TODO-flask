@@ -1,0 +1,29 @@
+{%extends 'base.html' %}
+{%block head%} 
+    <title>
+        TODO list
+    </title>   
+{% endblock %}
+{%block body%}
+    <div class="text-center">
+        <h1>
+            TODO List
+        </h1> 
+        <ul class="todo">
+            {%for task in data%}
+
+                <li class="{{ loop.cycle('odd', 'even') }}"">
+                    <!-- <div class="font-weight-bold">{{loop.index}}</div> -->
+                    <div class="task-id text-left">ID: {{task[0]}}</div>
+                    <div class="task-name font-weight-bold">{{task[1]}}</div>
+
+                    <div class="task-desc">{{task[2]}}</div>
+
+                    <div class="task-prog">Overall Progress: {{task[3]}}%
+                    <span data-prog="{{task[3]}}%"></span></div>    
+                </li>
+            {%endfor%}
+        </ul>        
+    </div>
+
+{% endblock %}

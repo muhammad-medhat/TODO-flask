@@ -1,0 +1,44 @@
+h1{
+    text-decoration: underline;
+}
+.todo{
+    border-radius: 5px;
+    background-color: #ccc;
+    list-style: none;
+    width: 50%;
+    margin: auto;
+    padding: 20px 50px;
+
+    outline: 1px solid;
+    outline-offset: -13px;
+}
+.todo li{
+    padding: 20px;
+    border:solid 1px;
+    background:#ddd
+}
+.todo li.even{
+    background:#fff
+
+}
+.todo .task-name{}
+.todo .task-desc{
+    border: solid 1px;
+    padding: 20px;
+    text-align: left;
+}
+.todo .task-prog{
+    background: #BDE;
+    margin: 10px 0;
+    padding: 10px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+.todo li span{
+    background-color: rgb(70, 129, 70);
+    width: 0;
+    height: 20px;
+    display: block;
+    z-index: 2;
+    transition: all 3s;
+}
