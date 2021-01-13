@@ -6,7 +6,7 @@ def init():
     db = sqlite3.connect('app.db')
     cr = db.cursor()
     cr.execute("create table if not exists todo(id integer primary key, name text, content text, prog integer)")
-    return cr
+    return db
 
 
 
@@ -18,6 +18,18 @@ def init():
 # db.close()
 
 def get_all():
-    cr = init()
-    cr.execute('select * from todo')
-    return cr.fetchall()
+    db = init()
+    cr=db.cursor()
+    cr.execute('select * from todo order by id desc')
+    ret = cr.fetchall()
+    db.close()
+    return ret
+    
+
+def add_task(name, content):
+    db = init()
+    cr=db.cursor()    
+    cr.execute(f"insert into todo(name, content, prog) values ('{name}', '{content}', 0)")
+    db.commit()
+    db.close()
+    return''
