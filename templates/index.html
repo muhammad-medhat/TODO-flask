@@ -9,7 +9,7 @@
         <h1>
             TODO List
         </h1> 
-        <ul class="todo">
+        <ul id='todoList' class="todo">
             {%for task in data%}
 
                 <li class="{{ loop.cycle('odd', 'even') }}"">

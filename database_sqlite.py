@@ -32,4 +32,4 @@ def add_task(name, content):
     cr.execute(f"insert into todo(name, content, prog) values ('{name}', '{content}', 0)")
     db.commit()
     db.close()
-    return''
+    return cr.lastrowid

@@ -30,12 +30,21 @@ def index():
 @app.route('/add_task', methods=['POST'])
 def add_task():
     body = request.get_json()
-    print(body)
+    # print(body)
     
     name = body.get("name", None)
     content=body.get("content", None)
-    database_sqlite.add_task(name, content)
-    return ''
+    last_id = database_sqlite.add_task(name, content)
+    
+    return jsonify({
+        'success':True,
+        'status':200,
+        'todo':{
+            'id': last_id, 
+            'name': name, 
+            'content': content
+            }
+    })
 
 
 

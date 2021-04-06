@@ -17,8 +17,50 @@ document.getElementById('addTask').addEventListener('click', e => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-    }).then(res=>{
-        console.log(res)
+    }).then((res)=>{
+        return res.json()
+    }).then((ret)=>{
+        //update UI
+        /**
+         *      <!-- <div class="font-weight-bold">{{loop.index}}</div> -->
+                    <div class='li-container'>
+
+
+                        <div class="task-prog">Overall Progress: {{task[3]}}%
+                            <span data-prog="{{task[3]}}%"></span>
+                        </div>  
+                    </div>
+                    <div class="btn btn-delete">&cross;</div>
+         */
+        console.log('====================')
+        console.log(ret)
+        const li = document.createElement('li')
+        
+        const liDiv = document.createElement('div')
+        liDiv.classList.add('li-container')
+
+        const idDiv = document.createElement('div')
+        idDiv.classList.add('task-id', 'text-left')
+        idDiv.innerHTML=`ID: ${ret['todo']['id']}`
+        liDiv.appendChild(idDiv)
+        
+        const nameDiv = document.createElement('div')
+        nameDiv.classList.add('task-name', 'font-weight-bold')
+        nameDiv.innerHTML=`${ret['todo']['name']}`
+        liDiv.appendChild(nameDiv)
+
+
+        const descDiv = document.createElement('div')
+        descDiv.classList.add('task-desc')
+        descDiv.innerHTML=`${ret['todo']['content']}`
+        liDiv.appendChild(descDiv)
+
+
+        li.appendChild(liDiv)
+        document.getElementById('todoList').prepend(li)
+        idDiv.classList.add('task-id', 'text-left')
+        idDiv.innerHTML=`ID: ${ret}`
+
     })
 
 })    
