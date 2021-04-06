@@ -21,49 +21,40 @@ document.getElementById('addTask').addEventListener('click', e => {
         return res.json()
     }).then((ret)=>{
         //update UI
-        /**
-         *      <!-- <div class="font-weight-bold">{{loop.index}}</div> -->
-                    <div class='li-container'>
 
-
-                        <div class="task-prog">Overall Progress: {{task[3]}}%
-                            <span data-prog="{{task[3]}}%"></span>
-                        </div>  
-                    </div>
-                    <div class="btn btn-delete">&cross;</div>
-         */
         console.log('====================')
         console.log(ret)
         const li = document.createElement('li')
         
         const liDiv = document.createElement('div')
-        liDiv.classList.add('li-container')
+        liDiv.classList.add('li-container')    
 
-        const idDiv = document.createElement('div')
-        idDiv.classList.add('task-id', 'text-left')
-        idDiv.innerHTML=`ID: ${ret['todo']['id']}`
-        liDiv.appendChild(idDiv)
-        
-        const nameDiv = document.createElement('div')
-        nameDiv.classList.add('task-name', 'font-weight-bold')
-        nameDiv.innerHTML=`${ret['todo']['name']}`
-        liDiv.appendChild(nameDiv)
-
-
-        const descDiv = document.createElement('div')
-        descDiv.classList.add('task-desc')
-        descDiv.innerHTML=`${ret['todo']['content']}`
-        liDiv.appendChild(descDiv)
+        liDiv.appendChild(elmnt('div', 'task-id text-left', 'ID: ' + ret['todo']['id']))
+        liDiv.appendChild(elmnt('div', 'task-name font-weight-bold', ret['todo']['name']))
+        liDiv.appendChild(elmnt('div', 'task-desc', ret['todo']['content']))
 
 
         li.appendChild(liDiv)
+        li.appendChild(elmnt('div', 'btn btn-delete', '&cross;'))
         document.getElementById('todoList').prepend(li)
-        idDiv.classList.add('task-id', 'text-left')
-        idDiv.innerHTML=`ID: ${ret}`
+
+
 
     })
 
 })    
-const postData = async (url='', data) => {
+function elmnt(el, cls='', inText){
+    const myElmt = document.createElement(el)
+    if(cls.split(' ').length > 1){
+        for (c of cls.split(' ')){
+            myElmt.classList.add(c)
+        }
+    } else{
+        myElmt.className = cls
+    }
 
+    myElmt.innerHTML=inText
+
+    console.log(myElmt)
+    return myElmt
 }
