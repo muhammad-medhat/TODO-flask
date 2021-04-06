@@ -1,6 +1,4 @@
-# from SQLAlchemy.sql.schema import PrimaryKeyConstraint
-#####
-from flask import Flask, render_template, url_for, session, jsonify
+from flask import Flask, render_template, url_for, session, jsonify, request
 # from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 # from sqlalchemy import create_engine
@@ -29,9 +27,13 @@ def index():
     todo_list = database_sqlite.get_all()
     return render_template('index.html', data = todo_list)
 
-@app.route('/add_task/<string:name>/<string:content>')
-def add_task(name, content):
+@app.route('/add_task', methods=['POST'])
+def add_task():
+    body = request.get_json()
+    print(body)
     
+    name = body.get("name", None)
+    content=body.get("content", None)
     database_sqlite.add_task(name, content)
     return ''
 

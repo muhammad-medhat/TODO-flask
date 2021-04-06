@@ -24,7 +24,11 @@ input, .btn{
 .todo li{
     padding: 20px;
     border:solid 1px;
-    background:#ddd
+    background:#ddd;
+    display: flex;
+}
+.li-container{
+    width: 100%;
 }
 .todo li.even{
     background:#fff
@@ -50,4 +54,7 @@ input, .btn{
     display: block;
     z-index: 2;
     transition: all 3s;
+}
+.btn.btn-delete{
+    width:10px;
 }
