@@ -3,7 +3,7 @@
 import sqlite3
 
 def init():
-    db = sqlite3.connect('app.db')
+    db = sqlite3.connect('db_sqlite.db')
     cr = db.cursor()
     cr.execute("create table if not exists todo(id integer primary key, name text, content text, prog integer)")
     return db
