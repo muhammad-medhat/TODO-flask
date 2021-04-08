@@ -2,6 +2,27 @@ document.querySelectorAll('.todo span').forEach(el=>{
     //console.log(el)
     el.style.width = el.dataset.prog
 })
+document.querySelectorAll('.btn-delete').forEach(b=>{
+    b.addEventListener('click', (e) => {
+            const li = e.target.closest('li')
+            const id = li.dataset.task_id
+            console.log(`delete ../todos/${id}`)
+            fetch(`/todos/${id}`, {
+                    method: 'delete', 
+                    headers: {            
+                        'Content-Type': 'application/json'
+                    }
+                }).then((res)=>{
+                    console.log(res)
+                    return res.json()
+                }).then((ret)=>{
+                //update UI
+                    console.log(ret)
+                    document.getElementById('todoList').removeChild(li)
+                })
+
+        })
+})
 document.getElementById('addTask').addEventListener('click', e => {
     console.log(e)
     const tName = document.getElementById('tNme').value
@@ -10,7 +31,6 @@ document.getElementById('addTask').addEventListener('click', e => {
         'name': tName, 
         'content': tcont
     }
-
     fetch('/todos', {
         method: 'post', 
         headers: {            
@@ -22,7 +42,6 @@ document.getElementById('addTask').addEventListener('click', e => {
     }).then((ret)=>{
         //update UI
 
-        console.log('====================')
         console.log(ret)
         const li = document.createElement('li')
         
@@ -47,9 +66,7 @@ function elmnt(el, cls='', inText){
     } else{
         myElmt.className = cls
     }
-
     myElmt.innerHTML=inText
-
     console.log(myElmt)
     return myElmt
 }

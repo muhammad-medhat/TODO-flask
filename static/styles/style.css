@@ -57,4 +57,8 @@ input, .btn{
 }
 .btn.btn-delete, .btn.btn-edit{
     width: 10px;
+    font-size: large;
+}
+.btn:hover{
+    font-weight: bold;
 }

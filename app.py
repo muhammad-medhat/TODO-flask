@@ -67,6 +67,13 @@ def delete_task(task_id):
         database_setup.TODO.delete(database_setup.TODO.query.get(task_id))
     else:
         database_sqlite.delete(task_id)
+    return jsonify({
+        'status': 200, 
+        'success': True, 
+        'body': {
+            'id': task_id
+        }
+    })
         
 
 if __name__ == '__main__':
