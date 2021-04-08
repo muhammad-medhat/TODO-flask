@@ -23,7 +23,10 @@ def get_all():
     cr.execute('select * from todo order by id desc')
     ret = cr.fetchall()
     db.close()
-    return ret
+    l = [{
+        'id':t[0], 'name':t[1], 'content':t[2], 'prog':t[3]
+    } for t in ret]
+    return l
     
 
 def add_task(name, content):

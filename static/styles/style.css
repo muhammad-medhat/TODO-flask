@@ -55,6 +55,6 @@ input, .btn{
     z-index: 2;
     transition: all 3s;
 }
-.btn.btn-delete{
-    width:10px;
+.btn.btn-delete, .btn.btn-edit{
+    width: 10px;
 }

@@ -11,25 +11,26 @@
         </h1> 
         <ul id='todoList' class="todo">
             {%for task in data%}
-
-                <li class="{{ loop.cycle('odd', 'even') }}"">
+{{task}}
+                <li class="{{ loop.cycle('odd', 'even') }}">
                     <!-- <div class="font-weight-bold">{{loop.index}}</div> -->
                     <div class='li-container'>
                         <div class="task-id text-left">
-                            ID: {{task[0]}}
+                            ID: {{task.id}}
                         </div>
                         <div class="task-name font-weight-bold">
-                            {{task[1]}}
+                            {{task.name}}
                         </div>
 
                         <div class="task-desc">
-                            {{task[2]}}
+                            {{task.content}}
                         </div>
 
-                        <div class="task-prog">Overall Progress: {{task[3]}}%
+                        <div class="task-prog">Overall Progress: {{task.prog}}%
                             <span data-prog="{{task[3]}}%"></span>
                         </div>  
-                    </div>
+                    </div>                    
+                    <div class="btn btn-edit">&checkmark;</div>
                     <div class="btn btn-delete">&cross;</div>
                 </li>
             {%endfor%}

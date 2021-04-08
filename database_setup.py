@@ -59,3 +59,11 @@ class TODO(db.Model):
         
     def update(self):
         db.session.commit()
+        
+    def format(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'content': self.content,
+            'prog': self.prog
+        }

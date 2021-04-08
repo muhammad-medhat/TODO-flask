@@ -3,6 +3,7 @@ from flask import Flask, render_template, url_for, session, jsonify, request
 from datetime import datetime
 # from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.sql.expression import false
 
 
 import database_sqlite, database_setup 
@@ -10,7 +11,7 @@ import sys
 
 import sqlite3
 
-sql_alchemy=False
+sql_alchemy=True
 app = Flask(__name__)
 if sql_alchemy:
     database_setup.setup_db(app)
@@ -28,11 +29,13 @@ database_sqlite
 @app.route('/')
 def index(): 
     if sql_alchemy:
+        # todo_list = [t.format() for t in database_setup.TODO.select_all()]
         todo_list = database_setup.TODO.select_all()
     else:
         todo_list = database_sqlite.get_all()
     
-    print(todo_list)
+    # for t in todo_list:
+    #     print(type(t))
     return render_template('index.html', data = todo_list)
 
 @app.route('/add_task', methods=['POST'])
