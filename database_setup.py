@@ -49,6 +49,9 @@ class TODO(db.Model):
         return db.session.query(TODO).all()
     
     def insert(self):
+        print('===========================')
+        print(self.format())
+        
         db.session.add(self)
         db.session.commit()
         return self.id
@@ -59,7 +62,6 @@ class TODO(db.Model):
         
     def update(self):
         db.session.commit()
-        
     def format(self):
         return {
             'id': self.id,

@@ -11,7 +11,7 @@ document.getElementById('addTask').addEventListener('click', e => {
         'content': tcont
     }
 
-    fetch('add_task', {
+    fetch('/todos', {
         method: 'post', 
         headers: {            
             'Content-Type': 'application/json',
@@ -33,15 +33,10 @@ document.getElementById('addTask').addEventListener('click', e => {
         liDiv.appendChild(elmnt('div', 'task-name font-weight-bold', ret['todo']['name']))
         liDiv.appendChild(elmnt('div', 'task-desc', ret['todo']['content']))
 
-
         li.appendChild(liDiv)
         li.appendChild(elmnt('div', 'btn btn-delete', '&cross;'))
         document.getElementById('todoList').prepend(li)
-
-
-
     })
-
 })    
 function elmnt(el, cls='', inText){
     const myElmt = document.createElement(el)

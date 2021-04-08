@@ -36,3 +36,10 @@ def add_task(name, content):
     db.commit()
     db.close()
     return cr.lastrowid
+
+def delete(task_id):
+    db = init()
+    cr=db.cursor()    
+    cr.execute(f"delete from todo where id={task_id}', 0)")
+    db.commit()
+    db.close()

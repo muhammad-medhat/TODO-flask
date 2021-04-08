@@ -38,7 +38,7 @@ def index():
     #     print(type(t))
     return render_template('index.html', data = todo_list)
 
-@app.route('/add_task', methods=['POST'])
+@app.route('/todos', methods=['POST'])
 def add_task():
     body = request.get_json()
     # print(body)
@@ -46,10 +46,10 @@ def add_task():
     name = body.get("name", None)
     content=body.get("content", None)
     if sql_alchemy:
-        last_id = database_sqlite.add_task(name, content)
-    else:
         last_id = database_setup.TODO.insert(database_setup.TODO(None, name, content))
-    
+    else:
+        last_id = database_sqlite.add_task(name, content)
+
     return jsonify({
         'success':True,
         'status':200,
@@ -61,7 +61,13 @@ def add_task():
     })
 
 
-
+@app.route("/todos/<task_id>", methods=['delete'])
+def delete_task(task_id):
+    if sql_alchemy:
+        database_setup.TODO.delete(database_setup.TODO.query.get(task_id))
+    else:
+        database_sqlite.delete(task_id)
+        
 
 if __name__ == '__main__':
     app.run(debug=True)
