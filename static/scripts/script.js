@@ -19,9 +19,13 @@ document.querySelectorAll('.btn-delete').forEach(b=>{
                 //update UI
                     console.log(ret)
                     document.getElementById('todoList').removeChild(li)
+                    //li.classList.add('remove')
                 })
 
         })
+})
+document.querySelectorAll('btn-edit').forEach(b=>{
+
 })
 document.getElementById('addTask').addEventListener('click', e => {
     console.log(e)
@@ -56,7 +60,11 @@ document.getElementById('addTask').addEventListener('click', e => {
         li.appendChild(elmnt('div', 'btn btn-delete', '&cross;'))
         document.getElementById('todoList').prepend(li)
     })
-})    
+})   
+
+/**
+ * Helper functions
+ * */ 
 function elmnt(el, cls='', inText){
     const myElmt = document.createElement(el)
     if(cls.split(' ').length > 1){
@@ -69,4 +77,15 @@ function elmnt(el, cls='', inText){
     myElmt.innerHTML=inText
     console.log(myElmt)
     return myElmt
+}
+
+function createElement(elType, elID, elVal){
+    const el = document.createElement(elType)
+    el.id = elID
+    el.value = elVal 
+}
+function createEdit(tID, tName, tContent, tProg){
+    const tNameInp = createElement('input', `editN-${tid}`, tName)
+    const tContInp = createElement('input', `editC-${tid}`, tName)
+    const tProgInp = createElement('input', `editP-${tid}`, tName)
 }

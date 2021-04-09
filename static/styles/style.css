@@ -20,6 +20,8 @@ input, .btn{
 
     outline: 1px solid;
     outline-offset: -13px;
+    transition: all 3s;
+
 }
 .todo li{
     padding: 20px;
@@ -54,6 +56,10 @@ input, .btn{
     display: block;
     z-index: 2;
     transition: all 3s;
+}
+.remove{
+    display: none;
+    background-color: red !important;
 }
 .btn.btn-delete, .btn.btn-edit{
     width: 10px;

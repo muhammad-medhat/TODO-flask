@@ -1,3 +1,4 @@
+from os import abort
 from flask import Flask, render_template, url_for, session, jsonify, request
 # from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -75,6 +76,30 @@ def delete_task(task_id):
         }
     })
         
+
+@app.route("/todos/<task_id>/edit", methods=['patch'])
+def update_todos(task_id):
+    body = request.get_json()
+    # print(body)
+    
+    name = body.get("name", None)
+    cont = body.get("content", None)
+    prog = body.get("prog", 0)
+    
+    if sql_alchemy:
+        todo = database_setup.TODO.query.get(task_id)
+        try:
+            todo.name = name
+            todo.content = cont
+            todo.prog  = prog
+            database_setup.TODO.update(todo)
+        except:
+            abort(500)
+    else:
+        database_sqlite.update(task_id, name, cont, prog)
+    return jsonify({
+        'msg': 'update'
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)
