@@ -24,8 +24,26 @@ document.querySelectorAll('.btn-delete').forEach(b=>{
 
         })
 })
-document.querySelectorAll('btn-edit').forEach(b=>{
+document.querySelectorAll('.btn-edit').forEach(b=>{
+    b.addEventListener('click', e=>{
+        const li = e.target.closest('li')
+        const id = li.dataset.task_id
+        const tName = li.dataset.name
+        const tCont = li.dataset.cont
+        const tProg = li.dataset.prog
+        // console.log(id)
 
+        //display edit
+        // 1.Hide content
+        li.innerHTML=''
+        const cont = createEdit(id, tName, tCont, tProg)
+        console.log(cont)
+        cont.forEach(inp=>{
+            console.log(inp)
+            li.appendChild(inp)
+        })
+
+    })
 })
 document.getElementById('addTask').addEventListener('click', e => {
     console.log(e)
@@ -83,9 +101,11 @@ function createElement(elType, elID, elVal){
     const el = document.createElement(elType)
     el.id = elID
     el.value = elVal 
+    return el
 }
-function createEdit(tID, tName, tContent, tProg){
+function createEdit(tid, tName, tContent, tProg){
     const tNameInp = createElement('input', `editN-${tid}`, tName)
-    const tContInp = createElement('input', `editC-${tid}`, tName)
-    const tProgInp = createElement('input', `editP-${tid}`, tName)
+    const tContInp = createElement('input', `editC-${tid}`, tContent)
+    const tProgInp = createElement('input', `editP-${tid}`, tProg)
+    return [tNameInp, tContInp, tProgInp]
 }

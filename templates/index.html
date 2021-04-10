@@ -12,7 +12,10 @@
         <ul id='todoList' class="todo">
             {%for task in data%}
 <!-- {{task}} -->
-                <li data-task_id="{{task.id}}" class="{{ loop.cycle('odd', 'even') }}">
+                <li data-task_id="{{task.id}}" class="{{ loop.cycle('odd', 'even') }}"
+                    data-name="{{task.name}}"
+                    data-cont="{{task.content}}"
+                    data-prog="{{task.prog}}">
                     <!-- <div class="font-weight-bold">{{loop.index}}</div> -->
                     <div class='li-container'>
                         <div class="task-id text-left">
