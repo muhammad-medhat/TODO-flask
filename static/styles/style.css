@@ -49,6 +49,9 @@ input, .btn{
     border: solid 1px;
     border-radius: 5px;
 }
+.todo li textarea{
+    width: 100%;
+}
 .todo li span{
     background-color: rgb(70, 129, 70);
     width: 0;
