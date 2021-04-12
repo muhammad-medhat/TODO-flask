@@ -98,7 +98,8 @@ def update_todos(task_id):
     else:
         database_sqlite.update(task_id, name, cont, prog)
     return jsonify({
-        'msg': 'update'
+        'msg': 'update',
+        'body': body
     })
 
 if __name__ == '__main__':

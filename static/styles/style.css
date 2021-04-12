@@ -52,7 +52,7 @@ input, .btn{
 .todo li textarea{
     width: 100%;
 }
-.todo li span{
+.todo li .task-prog span{
     background-color: rgb(70, 129, 70);
     width: 0;
     height: 20px;
@@ -66,7 +66,9 @@ input, .btn{
 }
 .btn.btn-delete, .btn.btn-edit{
     width: 10px;
+    display: inline;
     font-size: large;
+    float: right;
 }
 .btn:hover{
     font-weight: bold;

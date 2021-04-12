@@ -20,6 +20,8 @@
                     <div class='li-container'>
                         <div class="task-id text-left">
                             ID: {{task.id}}
+                            <span id='btnEdit_{{task.id}}' class="btn btn-edit">&checkmark;</span>
+                            <span id='btnDelete_{{task.id}}' class="btn btn-delete">&cross;</span>                              
                         </div>
                         <div class="task-name font-weight-bold">
                             {{task.name}}
@@ -31,10 +33,10 @@
 
                         <div class="task-prog">Overall Progress: {{task.prog}}%
                             <span data-prog="{{task.prog}}%"></span>
-                        </div>  
+                        </div>                    
+
                     </div>                    
-                    <div id='btnEdit_{{task.id}}' class="btn btn-edit">&checkmark;</div>
-                    <div id='btnDelete_{{task.id}}' class="btn btn-delete">&cross;</div>
+
                 </li>
             {%endfor%}
         </ul>        
