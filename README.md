@@ -1,5 +1,5 @@
 # TODO-flask
-The goal of this project is to practice CRUD operations using Flask and Sqlalchemy.
+The goal of this project is to practice CRUD operations using Flask and Sqlalchemy or DBAPI.
 ## Getting Started
 Following should be followed prior starting the project.
 
