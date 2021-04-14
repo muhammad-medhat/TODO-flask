@@ -12,7 +12,7 @@ import sys
 
 import sqlite3
 
-sql_alchemy=True
+sql_alchemy=False
 app = Flask(__name__)
 if sql_alchemy:
     database_setup.setup_db(app)

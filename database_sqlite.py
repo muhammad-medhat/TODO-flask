@@ -5,7 +5,13 @@ import sqlite3
 def init():
     db = sqlite3.connect('db_sqlite.db')
     cr = db.cursor()
-    cr.execute("create table if not exists todo(id integer primary key, name text, content text, prog integer)")
+    cr.execute('''
+            create table if not exists todo(
+                id integer primary key, 
+                name text, 
+                content text, 
+                prog integer
+            );''')
     return db
 
 
@@ -40,13 +46,21 @@ def add_task(name, content):
 def delete(task_id):
     db = init()
     cr=db.cursor()    
-    cr.execute(f"delete from todo where id={task_id}', 0")
+    cr.execute(f'''
+            delete from todo 
+            where id={task_id};
+        ''')
     db.commit()
     db.close()
 
 
 def update(task_id, tname, tcont, tprog):
-    q = f"update todo set name='{tname}', content='{tcont}', prog='{tprog}' where id={task_id}"
+    q = f'''
+    update todo 
+        set name='{tname}', 
+        content='{tcont}', 
+        prog='{tprog}' 
+        where id={task_id};'''
     print(q)
     db = init()
     cr=db.cursor()    
