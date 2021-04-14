@@ -33,12 +33,19 @@ def get_all():
         'id':t[0], 'name':t[1], 'content':t[2], 'prog':t[3]
     } for t in ret]
     return l
-    
 
 def add_task(name, content):
     db = init()
     cr=db.cursor()    
-    cr.execute(f"insert into todo(name, content, prog) values ('{name}', '{content}', 0)")
+    cr.execute(f'''
+            insert into todo(
+                name, content, prog
+                ) 
+            values (
+                '{name}', 
+                '{content}', 
+                0);
+            ''')
     db.commit()
     db.close()
     return cr.lastrowid
@@ -52,7 +59,6 @@ def delete(task_id):
         ''')
     db.commit()
     db.close()
-
 
 def update(task_id, tname, tcont, tprog):
     q = f'''
