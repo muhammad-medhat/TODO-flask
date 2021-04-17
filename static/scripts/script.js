@@ -56,7 +56,8 @@ document.querySelectorAll('.btn-edit').forEach(b=>{
             })
             // Sending an update request to the endpoint
             //! Note: not tested yet
-            fetch(`/todos/${id}/edit`, {
+            // fetch(`/todos/${id}/edit`, {
+            fetch(`/todos/${id}`, {
                 method: 'patch', 
                 body: bdy, 
                 headers: {            
