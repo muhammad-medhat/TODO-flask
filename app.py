@@ -29,22 +29,25 @@ database_sqlite
 
 @app.route('/')
 def index(): 
-    return fns.get_all()
-
+    req = fns.get_req()
+    return fns.switch_method(req)
 
 @app.route('/todos', methods=['POST'])
 def add_task():
-    return fns.create()
+    req = fns.get_req()
+    return fns.switch_method(req)
 
 @app.route("/todos/<task_id>", methods=['delete'])
 def delete_task(task_id):
-    return fns.delete(task_id)
+    req = fns.get_req()
+    return fns.switch_method(req, task_id)
 
         
 
 @app.route("/todos/<task_id>/edit", methods=['patch'])
 def update_todos(task_id):
-    return fns.update(task_id)
+    req = fns.get_req()
+    return fns.switch_method(req, task_id)
 
 if __name__ == '__main__':
     app.run(debug=True)

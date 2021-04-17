@@ -11,14 +11,31 @@ import database_sqlite, database_setup
 #-------------------- Globals----------------------------------------
 sql_alchemy=False
 #------------------------------------------------------------
-
+def switch_method(mthd, tid=''):
+    print(f'req type is ** {mthd} ** and tid is ** {tid} **')
+    switcher={
+        # 'get': 'get_all', 
+        'post': create, 
+        'patch': update,
+        'delete': delete
+    }
+    func = switcher.get(mthd,  get_all)
+    # print(dir(func.__name__))
+    print(f'********** method is {mthd}================')
+    if tid=='':
+        print(f'exec {func.__name__}()')
+        return func()
+    else:
+        print(f'exec {func.__name__}({tid})')
+        return func(tid)
+    #---------------------------------------------------------------------------
 def get_req():
     req = request.method.lower()
-    bdy=request.get_json()
-    print( f'=========== {req.upper()} ============')
-    print( bdy)      
-    print( f'=========== {req.upper()} ============')
-    print('============================================')
+    # bdy=request.get_json()
+    # print( f'=========== {req.upper()} ============')
+    # print( bdy)      
+    # print( f'=========== {req.upper()} ============')
+    # print('============================================')
     return req
 
 
